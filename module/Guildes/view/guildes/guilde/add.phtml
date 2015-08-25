@@ -1,0 +1,64 @@
+<?php
+$this->headScript()
+        ->prependFile($this->basePath('dist/js/pages/dashboard.js'));
+if (!empty($this->err)):
+    ?>
+    <div class="box box-danger box-solid">
+        <div class="box-header with-border">
+            <h5>Une erreur est survenue !</h5>
+            <div class='box-tools pull-right'>
+                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <div class='box-body'>
+            <ul>
+                <?php foreach ($this->err as $r): ?>
+                    <li><?php echo $this->translate($r); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>
+<?php if (!empty($this->info)): ?>
+    <div class="box box-success box-solid">
+        <div class="box-header with-border">
+            <h5>Félicitation !</h5>
+            <div class='box-tools pull-right'>
+                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <div class='box-body'>
+            <ul>
+                <?php foreach ($this->info as $r): ?>
+                    <li><?php echo $this->translate($r); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>
+<h1>Création d'une guilde</h1>
+<form method='post' action="<?php echo $this->url('guildes-add', array('action' => 'add')) ?>" class="form-inline">
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label">Nom</label>
+            <div class="controls">
+                <input type='text' name="nom" required="true"/>
+            </div>
+            <label class="control-label">Serveur</label>
+            <div class="controls">
+                <input type='text' name="serveur" required="true"/>
+            </div>
+            <label class="control-label">Jeux</label>
+            <div class="controls">
+                <select name="jeux">
+                    <?php foreach ($this->jeux as $j): ?>
+                        <option value="<?php echo $j['idJeux']; ?>"><?php echo $j['nom']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <p class="help-block">test aide</p>
+            <div class="form-actions">
+                <input type='submit' value='submit' class="btn"/>
+            </div>
+    </fieldset>
+</form>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Global Configuration Override
  *
@@ -11,14 +12,14 @@
  * file.
  */
 $dbParams = array(
-    'database'  => 'db580625521',
-    'username'  => 'dbo580625521',
-    'password'  => 'crocodile83',
-    'hostname'  => 'db580625521.db.1and1.com'
+    'database' => 'db580625521',
+    'username' => 'dbo580625521',
+    'password' => 'crocodile83',
+    'hostname' => 'localhost'//db580625521.db.1and1.com'
 );
 
 return array(
-     'service_manager' => array(
+    'service_manager' => array(
         'factories' => array(
             'Zend\Db\Adapter\Adapter'
             => 'Zend\Db\Adapter\AdapterServiceFactory',
@@ -43,15 +44,15 @@ return array(
         ),
     ),
     'db' => array(
-        'driver'    => 'pdo',
-        'dsn'       => 'mysql:dbname='.$dbParams['database'].';host='.$dbParams['hostname'],
-        'database'  => $dbParams['database'],
-        'username'  => $dbParams['username'],
-        'password'  => $dbParams['password'],
-        'hostname'  => $dbParams['hostname'],
+        'driver' => 'pdo',
+        'dsn' => 'mysql:dbname=' . $dbParams['database'] . ';host=' . $dbParams['hostname'],
+        'database' => $dbParams['database'],
+        'username' => $dbParams['username'],
+        'password' => $dbParams['password'],
+        'hostname' => $dbParams['hostname'],
         'driver_options' => array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
-        )        
+        )
     ),
     'urlProjet' => 'dev.murloc-avenue.com',
 );

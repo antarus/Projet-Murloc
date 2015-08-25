@@ -12,7 +12,6 @@ $aModules = array();
 $dir = scandir (__DIR__.'/../module');
 foreach($dir as $file) if($file !='.' && $file != '..') $aModules[] = $file;
 
-
 return array(
     'modules' => $aModules,
     'module_listener_options' => array(
