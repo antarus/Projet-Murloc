@@ -1,0 +1,172 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('Murloc Avenue : DEV') ?>
+        <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/dist/img/ma/favicon.ico'))
+                        ->prependStylesheet($this->basePath('/dist/css/AdminLTE.min.css'))
+                        ->prependStylesheet($this->basePath('/bootstrap/css/bootstrap.min.css'))
+                        ->prependStylesheet($this->basePath('/dist/css/skins/_all-skins.min.css')) ?>
+        <!-- Scripts -->
+        <?php echo $this->headScript()
+            ->prependFile($this->basePath('/dist/js/app.js'))
+            ->prependFile($this->basePath('/bootstrap/js/bootstrap.min.js'))
+            ->prependFile($this->basePath('/plugins/jQuery/jQuery-2.1.4.min.js'))
+            
+        ; 
+        
+        ?>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body class="skin-blue-light sidebar-mini">
+        <div class='wrapper'>
+            
+ 
+    <header class="main-header">
+        <a class='logo'>
+          
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Navbar Right Menu -->
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+            <?php if(!$this->userConnect):?>
+                <li class="dropdown messages-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      Se connecter
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                         <form action='<?php echo $this->url('home',array('action' => 'login')); ?>' method='post'>
+                            <div class="form-group">
+                              <input type="text" name='login' class="form-control"  value='' placeholder="Login">
+                              <input type="password" name='pwd' class="form-control" value='' placeholder="Mot de passe">
+                              <input type="submit" class="form-control" value='connexion'>
+                            </div>
+                        </form>
+                      </li>
+                      <li class="footer"><a href="<?php echo $this->url('users-forgekey'); ?>">Mot de passe oublié</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown messages-menu">
+                    <a href="#" >
+                      Créer un compte
+                    </a>
+                    
+                </li>
+            <?php else: ?>
+                <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <?php if(empty($this->avatar)):?>
+                    <img src="/dist/img/avatar-null.png" class="user-image" alt="User Image"/>
+                  <?php else: ?>
+                    <img src="http://eu.battle.net/static-render/<?php echo $this->avatar ; ?>" class="user-image" alt="User Image"/>
+                  <?php endif ?>
+                  <span class="hidden-xs"><?php echo $this->nom ;?></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="user-header">
+                    <?php if(empty($this->avatar)):?>
+                    <img src="/dist/img/avatar-null.png" class="img-circle" alt="User Image"/>
+                  <?php else: ?>
+                    <img src="http://eu.battle.net/static-render/<?php echo $this->avatar ; ?>" class="img-circle" alt="User Image"/>
+                  <?php endif ?>
+                    <p><?php echo $this->nom ;?></p>
+                  </li>
+                 
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">Mon compte</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="<?php echo $this->url('home',array('action' => 'logout')); ?>" class="btn btn-default btn-flat">Déconnection</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            <?php endif; ?>
+             </ul>
+            </div>
+        </nav>
+      </header>
+       <div class="main-sidebar">
+        <!-- Inner sidebar -->
+        <div class="sidebar">
+          <!-- user panel (Optional) -->
+          <div class="user-panel">
+            <div class="pull-left image">
+                <a href="/" class='logo'>
+                  <img src='/dist/img/ma/logo.png' height='100px'/>
+                </a>
+            </div>
+          </div><!-- /.user-panel -->
+          <!-- Sidebar Menu -->
+          <ul class="sidebar-menu">
+            <?php if($this->userConnect):?>
+            <li class="header">Mon espace</li>
+            <!-- Optionally, you can add icons to the links -->
+            <li class="active"><a href="#"><span>Ma espace perso</span></a></li>
+            <li class="treeview">
+              <a href="#"><span>Mes listes</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="#">Guerrier</a></li>
+                <li><a href="#">Chasseur</a></li>
+                <li><a href="#">Chaman</a></li>
+                <li><a href="#">Prêtre</a></li>
+                <li><a href="#">Démoniste</a></li>
+                <li><a href="#">Druide</a></li>
+                <li><a href="#">Moine</a></li>
+                <li><a href="#">Mage</a></li>
+                <li><a href="#">Chevalier de la mort</a></li>
+                <li><a href="#">Voleur</a></li>
+                <li><a href="#">Paladin</a></li>
+              </ul>
+            </li>
+            <li><a href="#"><span>Mes guildes</span></a></li>
+            <?php endif; ?>
+            <li class="header">Communautée</li>
+            <li class="active"><a href="/"><span>Accueil</span></a></li>
+            <li class="treeview">
+              <a href="#"><span>Listes de Loots publique</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="#">Guerrier</a></li>
+                <li><a href="#">Chasseur</a></li>
+                <li><a href="#">Chaman</a></li>
+                <li><a href="#">Prêtre</a></li>
+                <li><a href="#">Démoniste</a></li>
+                <li><a href="#">Druide</a></li>
+                <li><a href="#">Moine</a></li>
+                <li><a href="#">Mage</a></li>
+                <li><a href="#">Chevalier de la mort</a></li>
+                <li><a href="#">Voleur</a></li>
+                <li><a href="#">Paladin</a></li>
+              </ul>
+            </li>
+            <a href="#"><span>Evenements publique</span> <i class="fa fa-angle-left pull-right"></i></a>
+            <li><a href="<?php echo $this->url('contact'); ?>"><span>Contact</span></a></li>
+          </ul><!-- /.sidebar-menu -->
+          <br />
+          <a href='http://eu.blizzard.com/fr-fr/'>
+          <img src='/dist/img/ma/Blizzard_800.jpg' width='50px;'/>
+          </a>
+        </div><!-- /.sidebar -->
+      </div><!-- /.main-sidebar -->
+        <div class="container" style='min-height:900px !important;'>
+            <?php echo $this->content; ?>
+            <hr>
+            <footer>
+                <p>&copy; 2015 - <?php echo date('Y') ?> <?php echo $this->translate('Murloc Avenue - Alpha v1.0 - Réalisation: Capi. Logo: Eva pernot') ?></p>
+                <p> World of Warcraft et Blizzard Entertainment sont des marques déposées de Blizzard Entertainment, Inc. aux États-Unis d’Amérique et/ou dans d’autres pays.</p>
+            </footer>
+        </div> <!-- /container -->
+               </div>
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<?php $this->headScript()
+        ->prependFile($this->basePath('dist/js/pages/dashboard.js'));
+if (!empty($this->err)):
+    ?>
+    <div class="box box-danger box-solid">
+        <div class="box-header with-border">
+            <h5>Une erreur est survenue !</h5>
+            <div class='box-tools pull-right'>
+                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <div class='box-body'>
+        <ul>
+            <?php foreach ($this->err as $r): ?>
+                <li><?php echo $this->translate($r); ?></li>
+            <?php endforeach; ?>
+        </ul>
+        </div>
+    </div>
+<?php endif; ?>
+<?php if (!empty($this->info)): ?>
+    <div class="box box-success box-solid">
+        <div class="box-header with-border">
+            <h5>Félicitation !</h5>
+            <div class='box-tools pull-right'>
+                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <div class='box-body'>
+        <ul>
+            <?php foreach ($this->info as $r): ?>
+                <li><?php echo $this->translate($r); ?></li>
+            <?php endforeach; ?>
+        </ul>
+        </div>
+    </div>
+<?php endif; ?>
+<h1>Contact :</h1>
+ <br />
+ <br />
+ <div class='row'></div>
