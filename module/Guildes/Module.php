@@ -38,4 +38,14 @@ class Module {
         );
     }
 
+    public function onBootstrap($e) {
+
+        $serviceManager = $e->getApplication()->getServiceManager();
+        $viewModel = $e->getApplication()->getMvcEvent()->getViewModel();
+
+
+
+        //$viewModel->err[] = "TEST";
+    }
+
 }

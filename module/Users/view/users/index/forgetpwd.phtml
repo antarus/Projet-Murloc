@@ -1,65 +1,28 @@
-<?php $this->headScript()
-        ->prependFile($this->basePath('dist/js/pages/dashboard.js'));
-if (!empty($this->err)):
-    ?>
-    <div class="box box-danger box-solid">
-        <div class="box-header with-border">
-            <h5>Une erreur est survenue !</h5>
-            <div class='box-tools pull-right'>
-                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
-        </div>
-        <div class='box-body'>
-        <ul>
-            <?php foreach ($this->err as $r): ?>
-                <li><?php echo $this->translate($r); ?></li>
-            <?php endforeach; ?>
-        </ul>
-        </div>
-    </div>
-<?php endif; ?>
-<?php if (!empty($this->info)): ?>
-    <div class="box box-success box-solid">
-        <div class="box-header with-border">
-            <h5>Félicitation !</h5>
-            <div class='box-tools pull-right'>
-                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
-        </div>
-        <div class='box-body'>
-        <ul>
-            <?php foreach ($this->info as $r): ?>
-                <li><?php echo $this->translate($r); ?></li>
-            <?php endforeach; ?>
-        </ul>
-        </div>
-    </div>
-<?php endif; ?>
-<h1>Perte du mot de passe de Murloc-avenue !</h1>
- <br />
- <br />
- <div class='row'>
+<h1><?php echo $this->translate("Perte du mot de passe de Murloc-avenue !"); ?></h1>
+<br />
+<br />
+<div class='row'>
     <div class='col-md-6'>
         <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Vous avez perdu votre mot de passe? Aucun probleme !
-               Rentrer votre email et un courrier vous sera envoyé afin de lancer la procédure de changement de mot de passe.</h3>
+                <h3 class="box-title"><?php echo $this->translate("Vous avez perdu votre mot de passe? Aucun probleme !
+                    Rentrer votre email et un courrier vous sera envoyé afin de lancer la procédure de changement de mot de passe."); ?></h3>
             </div><!-- /.box-header -->
             <!-- form start -->
             <form role="form" action='<?php echo $this->url('users-pwdswap'); ?>' method='post'>
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="email">Email address</label>
-                  <input type="email" class="form-control" name='mail' id="email" placeholder="Enter email">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="email"><?php echo $this->translate("Adresse email") ?></label>
+                        <input type="email" class="form-control" name='mail' id="email" placeholder="<?php echo $this->translate('Enter email'); ?>">
+                    </div>
                 </div>
-              </div>
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary"><?php echo $this->translate("Soumettre") ?></button>
+                </div>
             </form>
         </div>
     </div>
-     <div class='col-md-6'>
-         
-     </div>
- </div>
+    <div class='col-md-6'>
+
+    </div>
+</div>

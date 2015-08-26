@@ -8,7 +8,7 @@
  * @date: 22/10/2013
  */
 
-namespace Guildes\Model;
+namespace Users\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\Sql\Expression;

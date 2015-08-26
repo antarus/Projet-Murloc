@@ -101,24 +101,28 @@ class GuildeController extends AbstractActionController {
         $sInfosMessage = $sMessenger->getMessages();
         $aRequest = $this->getRequest();
 
+
         if ($aRequest->isPost()) {
 
             $aPost = $aRequest->getPost();
             if (!isset($aPost['nom']) || empty($aPost['nom'])) {
-                $this->_getLogService()->log(LogService::INFO, "Guilde - Nom manquant.", LogService::USER);
+                $this->_getLogService()->log(LogService::INFO, $this->_getServTranslator()->translate("Guilde - Nom manquant."), LogService::USER);
                 $sErrorMessage[] = $this->_getServTranslator()->translate("Guilde - Nom manquant");
-                return new ViewModel(array('err' => $sErrorMessage));
+                $this->layout()->setVariable('err', $sErrorMessage);
+                return new ViewModel(array('jeux' => $this->_getServJeux()->fetchAll()));
             }
             if (!isset($aPost['serveur']) || empty($aPost['serveur'])) {
-                $this->_getLogService()->log(LogService::INFO, "Guilde - Nom manquant.", LogService::USER);
+                $this->_getLogService()->log(LogService::INFO, $this->_getServTranslator()->translate("Guilde - Nom manquant."), LogService::USER);
                 $sErrorMessage[] = $this->_getServTranslator()->translate("Guilde - Serveur manquant");
-                return new ViewModel(array('err' => $sErrorMessage));
+                $this->layout()->setVariable('err', $sErrorMessage);
+                return new ViewModel(array('jeux' => $this->_getServJeux()->fetchAll()));
             }
 
             if (!isset($aPost['jeux']) || empty($aPost['jeux'])) {
-                $this->_getLogService()->log(LogService::INFO, "Guilde - Nom manquant.", LogService::USER);
+                $this->_getLogService()->log(LogService::INFO, $this->_getServTranslator()->translate("Guilde - Nom manquant."), LogService::USER);
                 $sErrorMessage[] = $this->_getServTranslator()->translate("Guilde - Jeux manquant");
-                return new ViewModel(array('err' => $sErrorMessage));
+                $this->layout()->setVariable('err', $sErrorMessage);
+                return new ViewModel(array('jeux' => $this->_getServJeux()->fetchAll()));
             }
             $aGuilde = array('nom' => $aPost['nom'],
                 'serveur' => $aPost['serveur'],
@@ -131,8 +135,9 @@ class GuildeController extends AbstractActionController {
             return $this->redirect()->toRoute('guildes-liste');
         }
 
-        return new ViewModel(array('err' => $sErrorMessage,
-            'info' => $sInfosMessage, 'jeux' => $this->_getServJeux()->fetchAll()));
+        $this->layout()->setVariable('err', $sErrorMessage);
+        $this->layout()->setVariable('info', $sInfosMessage);
+        return new ViewModel(array('jeux' => $this->_getServJeux()->fetchAll()));
     }
 
     /**
