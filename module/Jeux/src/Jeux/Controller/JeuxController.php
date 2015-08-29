@@ -76,9 +76,9 @@ class JeuxController extends AbstractActionController {
         $sErrorMessage = $sMessenger->getMessages();
         $sMessenger->setNamespace('info');
         $sInfosMessage = $sMessenger->getMessages();
-        $aListeJeux = $this->_getServGuildes()->fetchAll();
+        $aListeJeux = $this->_getServJeux()->fetchAll();
         return new ViewModel(array('err' => $sErrorMessage,
-            'info' => $sInfosMessage, 'guildes' => $aListeJeux));
+            'info' => $sInfosMessage, 'jeux' => $aListeJeux));
     }
 
     /**

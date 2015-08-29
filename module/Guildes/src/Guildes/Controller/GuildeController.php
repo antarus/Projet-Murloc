@@ -9,6 +9,8 @@ namespace Guildes\Controller;
 use Application\Service\LogService;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use \Bnet\Region;
+use \Bnet\ClientFactory;
 
 /**
  * Controller principal du module guilde
@@ -19,6 +21,12 @@ class GuildeController extends AbstractActionController {
     private $_logService;
     private $_servGuildes;
     private $_servJeux;
+
+    /**
+     *
+     * @var Bnet\ClientFactory
+     */
+    private $_servBnet;
 
     /**
      * Retourne le service de traduction.
@@ -64,6 +72,17 @@ class GuildeController extends AbstractActionController {
     }
 
     /**
+     * Retourne le service de gestion des jeux.
+     * @return Bnet\ClientFactory
+     */
+    private function _getServBnet() {
+        if (!$this->_servBnet) {
+            $this->_servBnet = $this->getServiceLocator()->get('Bnet\ClientFactory');
+        }
+        return $this->_servBnet;
+    }
+
+    /**
      * Action par defaut du controller.
      *
      * Affiche la liste des guildes.
@@ -84,6 +103,10 @@ class GuildeController extends AbstractActionController {
         $sErrorMessage = $sMessenger->getMessages();
         $sMessenger->setNamespace('info');
         $sInfosMessage = $sMessenger->getMessages();
+
+//        $guild = $this->_getServBnet()->warcraft(new Region(Region::EUROPE))->guilds();
+//        $guild->on("garona");
+//        $aListeGuilde = $guild->find("mystra");
         $aListeGuilde = $this->_getServGuildes()->fetchAll();
         return new ViewModel(array('err' => $sErrorMessage,
             'info' => $sInfosMessage, 'guildes' => $aListeGuilde));

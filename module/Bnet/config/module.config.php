@@ -23,18 +23,20 @@ return array(
             ),
         ),
     ),
-    'controllers' => array(
-        'invokables' => array(
-            'Jeux\Controller\Jeux' => 'Jeux\Controller\JeuxController',
-        ),
+    'battlenet' => array(
+        'apikey' => '5nssdkuvwub25ydqzhwwznvzh8hh2ag9'
     ),
-    // View manager : template map, pour optimiser les temps de chargements.
-    'view_manager' => array(
-        'template_path_stack' => array(
-            __DIR__ . '/../view',
-        ),
-        'strategies' => array(
-            'ViewJsonStrategy',
-        ),
-    )
+//            'caches' => array(
+//                'bnet' => array(
+//                    'adapter' => array(
+//                        'name' => 'filesystem',
+//                        'lifetime' => 1800,
+//                    ),
+//                    'plugins' => array(
+//                        'exception_handler' => array(
+//                            'throw_exceptions' => false
+//                        ),
+//                    ),
+//                ),
+//            ),
 );
