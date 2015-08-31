@@ -29,6 +29,20 @@ return array(
                     ),
                 ),
             ),
+            'guildes-del' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/guildes/suppression/[:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]+',
+                        'id' => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Guildes\Controller\Guilde',
+                        'action' => 'remove',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(

@@ -43,7 +43,7 @@
                             <?php if (!$this->userConnect): ?>
                                 <li class="dropdown messages-menu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        Se connecter
+                                        <?php echo $this->translate('Se connecter'); ?>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
@@ -55,14 +55,11 @@
                                                 </div>
                                             </form>
                                         </li>
-                                        <li class="footer"><a href="<?php echo $this->url('users-forgekey'); ?>">Mot de passe oublié</a></li>
+                                        <li class="footer"><a href="<?php echo $this->url('users-forgekey'); ?>"><?php echo $this->translate('Mot de passe oublié'); ?></a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown messages-menu">
-                                    <a href="#" >
-                                        Créer un compte
-                                    </a>
-
+                                    <a href="#" ><?php echo $this->translate('Créer un compte'); ?></a>
                                 </li>
                             <?php else: ?>
                                 <li class="dropdown user user-menu">
@@ -86,10 +83,10 @@
 
                                         <li class="user-footer">
                                             <div class="pull-left">
-                                                <a href="#" class="btn btn-default btn-flat">Mon compte</a>
+                                                <a href="#" class="btn btn-default btn-flat"><?php echo $this->translate('Mon compte'); ?></a>
                                             </div>
                                             <div class="pull-right">
-                                                <a href="<?php echo $this->url('home', array('action' => 'logout')); ?>" class="btn btn-default btn-flat">Déconnection</a>
+                                                <a href="<?php echo $this->url('home', array('action' => 'logout')); ?>" class="btn btn-default btn-flat"><?php echo $this->translate('Déconnection'); ?></a>
                                             </div>
                                         </li>
                                     </ul>
@@ -113,9 +110,9 @@
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">
                         <?php if ($this->userConnect): ?>
-                            <li class="header">Mon espace</li>
+                            <li class="header"><?php echo $this->translate('Mon espace'); ?></li>
                             <!-- Optionally, you can add icons to the links -->
-                            <li class="active"><a href="#"><span>Ma espace perso</span></a></li>
+                            <li class="active"><a href="#"><span><?php echo $this->translate('Ma espace perso'); ?></span></a></li>
                             <li class="treeview">
                                 <a href="#"><span>Mes listes</span> <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
@@ -132,12 +129,12 @@
                                     <li><a href="#">Paladin</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#"><span>Mes guildes</span></a></li>
+                            <li><a href="#"><span><?php echo $this->translate('Mes guildes'); ?></span></a></li>
                         <?php endif; ?>
-                        <li class="header">Communautée</li>
-                        <li class="active"><a href="/"><span>Accueil</span></a></li>
+                        <li class="header"><?php echo $this->translate('Communautée'); ?></li>
+                        <li class="active"><a href="/"><span><?php echo $this->translate('Accueil'); ?></span></a></li>
                         <li class="treeview">
-                            <a href="#"><span>Listes de Loots publique</span> <i class="fa fa-angle-left pull-right"></i></a>
+                            <a href="#"><span><?php echo $this->translate('Listes de Loots publique'); ?></span> <i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
                                 <li><a href="#">Guerrier</a></li>
                                 <li><a href="#">Chasseur</a></li>
@@ -152,7 +149,7 @@
                                 <li><a href="#">Paladin</a></li>
                             </ul>
                         </li>
-                        <a href="#"><span>Evenements publique</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <a href="#"><span><?php echo $this->translate('Evenements publique'); ?></span> <i class="fa fa-angle-left pull-right"></i></a>
                         <li><a href="<?php echo $this->url('contact'); ?>"><span>Contact</span></a></li>
                         <li><a href="<?php echo $this->url('guildes-liste'); ?>"><span>Guilde</span></a></li>
 
@@ -171,7 +168,7 @@
                     ?>
                     <div class="box box-danger box-solid">
                         <div class="box-header with-border">
-                            <h5>Une erreur est survenue !</h5>
+                            <h5><?php echo $this->translate('Une erreur est survenue !'); ?></h5>
                             <div class='box-tools pull-right'>
                                 <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                             </div>
@@ -188,7 +185,7 @@
                 <?php if (!empty($this->info)): ?>
                     <div class="box box-success box-solid">
                         <div class="box-header with-border">
-                            <h5>Félicitation !</h5>
+                            <h5><?php echo $this->translate('Félicitation !'); ?></h5>
                             <div class='box-tools pull-right'>
                                 <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                             </div>

@@ -2,3 +2,4 @@ local.php
 *.local.php
 HELP/
 nbproject/
+log/murloc.log

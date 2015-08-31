@@ -97,7 +97,7 @@ class GuildeController extends AbstractActionController {
      * @return ViewModel
      */
     public function listeAction() {
-        //$this->_getLogService()->log(LogService::INFO, "test log. IndexAction", LogService::USER);
+//$this->_getLogService()->log(LogService::INFO, "test log. IndexAction", LogService::USER);
         $sMessenger = $this->flashMessenger();
         $sMessenger->setNamespace('err');
         $sErrorMessage = $sMessenger->getMessages();
@@ -107,13 +107,15 @@ class GuildeController extends AbstractActionController {
 //        $guild = $this->_getServBnet()->warcraft(new Region(Region::EUROPE))->guilds();
 //        $guild->on("garona");
 //        $aListeGuilde = $guild->find("mystra");
+
         $aListeGuilde = $this->_getServGuildes()->fetchAll();
-        return new ViewModel(array('err' => $sErrorMessage,
-            'info' => $sInfosMessage, 'guildes' => $aListeGuilde));
+        $this->layout()->setVariable('err', $sErrorMessage);
+        $this->layout()->setVariable('info', $sInfosMessage);
+        return new ViewModel(array('guildes' => $aListeGuilde));
     }
 
     /**
-     * Ajout d'une guilde
+     * Ajout d'une guilde.
      * @return ViewModel
      */
     public function addAction() {
@@ -124,9 +126,7 @@ class GuildeController extends AbstractActionController {
         $sInfosMessage = $sMessenger->getMessages();
         $aRequest = $this->getRequest();
 
-
         if ($aRequest->isPost()) {
-
             $aPost = $aRequest->getPost();
             if (!isset($aPost['nom']) || empty($aPost['nom'])) {
                 $this->_getLogService()->log(LogService::INFO, $this->_getServTranslator()->translate("Guilde - Nom manquant."), LogService::USER);
@@ -140,7 +140,6 @@ class GuildeController extends AbstractActionController {
                 $this->layout()->setVariable('err', $sErrorMessage);
                 return new ViewModel(array('jeux' => $this->_getServJeux()->fetchAll()));
             }
-
             if (!isset($aPost['jeux']) || empty($aPost['jeux'])) {
                 $this->_getLogService()->log(LogService::INFO, $this->_getServTranslator()->translate("Guilde - Nom manquant."), LogService::USER);
                 $sErrorMessage[] = $this->_getServTranslator()->translate("Guilde - Jeux manquant");
@@ -155,7 +154,8 @@ class GuildeController extends AbstractActionController {
             }
             $this->_getServGuildes()->save($aGuilde);
 
-            return $this->redirect()->toRoute('guildes-liste');
+            $sMessenger->addMessage($this->_getServTranslator()->translate("La guilde a été créée avec succès."), 'info');
+            return $this->redirect()->toRoute('guildes-liste', array('info' => $sInfosMessage));
         }
 
         $this->layout()->setVariable('err', $sErrorMessage);
@@ -168,7 +168,49 @@ class GuildeController extends AbstractActionController {
      * @return ViewModel
      */
     public function editAction() {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('guildes-add');
+        }
 
+        try {
+            $aGuildeBdd = $this->_getServGuildes()->getById($id);
+        } catch (\Exception $ex) {
+            return $this->redirect()->toRoute('guildes-liste');
+        }
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+
+            $aGuilde = array('nom' => $aPost['nom'],
+                'serveur' => $aPost['serveur'],
+                'idJeux' => $aPost['jeux']);
+            if (!isset($aPost['nom']) || empty($aPost['nom'])) {
+                $sErrorMessage[] = $this->_getServTranslator()->translate("Guilde - Nom manquant");
+                $this->layout()->setVariable('err', $sErrorMessage);
+                return new ViewModel(array('jeux' => $this->_getServJeux()->fetchAll()));
+            }
+            if (!isset($aPost['serveur']) || empty($aPost['serveur'])) {
+                $this->_getLogService()->log(LogService::INFO, $this->_getServTranslator()->translate("Guilde - Nom manquant."), LogService::USER);
+                $sErrorMessage[] = $this->_getServTranslator()->translate("Guilde - Serveur manquant");
+                $this->layout()->setVariable('err', $sErrorMessage);
+                return new ViewModel(array('jeux' => $this->_getServJeux()->fetchAll()));
+            }
+            if (!isset($aPost['jeux']) || empty($aPost['jeux'])) {
+                $this->_getLogService()->log(LogService::INFO, $this->_getServTranslator()->translate("Guilde - Nom manquant."), LogService::USER);
+                $sErrorMessage[] = $this->_getServTranslator()->translate("Guilde - Jeux manquant");
+                $this->layout()->setVariable('err', $sErrorMessage);
+                return new ViewModel(array('jeux' => $this->_getServJeux()->fetchAll()));
+            }
+            $this->_getServGuildes()->save($aGuilde);
+
+
+            return $this->redirect()->toRoute('guildes-liste');
+        }
+
+
+        return array('id' => $id,
+            'guilde' => $aGuildeBdd,
+        );
     }
 
     /**
@@ -176,7 +218,26 @@ class GuildeController extends AbstractActionController {
      * @return ViewModel
      */
     public function removeAction() {
+        $sMessenger = $this->flashMessenger();
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('guildes-liste');
+        }
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $del = $request->getPost('del', 'Non');
+            if ($del == 'Oui') {
+                $id = (int) $request->getPost('id');
+                if ($this->_getServGuildes()->delete($id) == 0) {
+                    $sMessenger->addMessage($this->_getServTranslator()->translate("Une erreur est survenue lors de la suppression de la guilde."), 'err');
+                } else {
+                    $sMessenger->addMessage($this->_getServTranslator()->translate("La guilde a été supprimée avec succès."), 'info');
+                }
+            }
+            return $this->redirect()->toRoute('guildes-liste');
+        }
 
+        return array('id' => $id, 'guilde' => $this->_getServGuildes()->getById($id));
     }
 
 }

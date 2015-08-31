@@ -1,43 +1,6 @@
-<?php $this->headScript()
-        ->prependFile($this->basePath('dist/js/pages/dashboard.js'));
-if (!empty($this->err)):
-    ?>
-    <div class="box box-danger box-solid">
-        <div class="box-header with-border">
-            <h5>Une erreur est survenue !</h5>
-            <div class='box-tools pull-right'>
-                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
-        </div>
-        <div class='box-body'>
-        <ul>
-            <?php foreach ($this->err as $r): ?>
-                <li><?php echo $this->translate($r); ?></li>
-            <?php endforeach; ?>
-        </ul>
-        </div>
-    </div>
-<?php endif; ?>
-<?php if (!empty($this->info)): ?>
-    <div class="box box-success box-solid">
-        <div class="box-header with-border">
-            <h5>Félicitation !</h5>
-            <div class='box-tools pull-right'>
-                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
-        </div>
-        <div class='box-body'>
-        <ul>
-            <?php foreach ($this->info as $r): ?>
-                <li><?php echo $this->translate($r); ?></li>
-            <?php endforeach; ?>
-        </ul>
-        </div>
-    </div>
-<?php endif; ?>
-<h1>Gerer vos listes de loots avec Murloc-avenue Alpha !</h1>
- <br />
- <br />
+<h1><?php echo $this->translate('Gerer vos listes de loots avec Murloc-avenue Alpha !'); ?></h1>
+<br />
+<br />
 <div class='row'>
     <div class='col-md-6'>
         <div class='box box-info'>
@@ -53,7 +16,7 @@ if (!empty($this->err)):
                     <li>Choisisez de partager certaine liste avec votre guilde</li>
                     <li>Fournisez vos listes à votre raidLead</li>
                     <li>Gagner du temps en raid, et ne louper plus aucun loot !</li>
-                    
+
                 </ul>
                 <h3> Raid Leader : </h3>
                 <ul>
@@ -65,11 +28,11 @@ if (!empty($this->err)):
                             <li>Accepter ou non les tokens dans le calcul des points</li>
                             <li>Utiliser un system de point spécifique au token</li>
                             <li>Ayer des statistiques précisent sur l'attribution des loots</li>
-                         </ul>
+                        </ul>
                     </li>
                     <li>Ayer une vision précise des besoins de votre roster</li>
                     <li>Organiser vos raid en fonction des besoins de votre roster</li>
-                  </ul> 
+                </ul>
             </div>
         </div>
         <div class='box box-danger'>
@@ -77,56 +40,56 @@ if (!empty($this->err)):
             <div class='box-body'>
                 <table class="table table-bordered table-hover">
                     <tbody>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Nom</th>
-                      <th>Raid</th>
-                      <th>classe</th>
-                      <th><span class="glyphicon glyphicon-user"></span></th>
-                      <th style="width: 10px"><span class="glyphicon glyphicon-thumbs-up"></span></th>
-                    </tr>
-                    <tr>
-                      <td>1.</td>
-                      <td><a href='#'>Démo affli BIS</a> </td>
-                      <td>Fonderie Mythic</td>
-                      <td>Démoniste</td>
-                      <td><a href='#'><img src='/dist/img/avatars/0-1-1.gif' height='50px' /></a></td>
-                      <td><b>135</b></td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td><a href='#'>Démo Destru BIS</a> </td>
-                      <td>Fonderie Mythic</td>
-                      <td>Démoniste</td>
-                      <td><a href='#'><img src='/dist/img/avatars/0-3-1.gif' height='50px'/></a></td>
-                      <td><b>100</b></td>
-                    </tr>
-                    <tr>
-                      <td>3.</td>
-                      <td><a href='#'>Démo affli Heroique</a> </td>
-                      <td>Fonderie Hero</td>
-                      <td>Démoniste</td>
-                      <td><a href='#'><img src='/dist/img/avatars/0-11-1.gif' height='50px'/></a></td>
-                      <td><b>75</b></td>
-                    </tr>
-                    <tr>
-                      <td>4.</td>
-                      <td><a href='#'>War Prot post Fonderie</a></td>
-                      <td>Cognefort Heroique</td>
-                      <td>Guerrier</td>
-                      <td><a href='#'><img src='/dist/img/avatars/0-10-8.gif' height='50px'/></a></td>
-                      <td><b>25</b></td>
-                    </tr>
-                    <tr>
-                      <td>5.</td>
-                      <td><a href='#'>Démo affli BIS</a> </td>
-                      <td>Fonderie Mythic</td>
-                      <td>Démoniste</td>
-                      <td><a href='#'><img src='/dist/img/avatars/0-11-8.gif' height='50px'/></a></td>
-                      <td><b>5</b></td>
-                    </tr>
-                  </tbody>
-               </table>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Nom</th>
+                            <th>Raid</th>
+                            <th>classe</th>
+                            <th><span class="glyphicon glyphicon-user"></span></th>
+                            <th style="width: 10px"><span class="glyphicon glyphicon-thumbs-up"></span></th>
+                        </tr>
+                        <tr>
+                            <td>1.</td>
+                            <td><a href='#'>Démo affli BIS</a> </td>
+                            <td>Fonderie Mythic</td>
+                            <td>Démoniste</td>
+                            <td><a href='#'><img src='/dist/img/avatars/0-1-1.gif' height='50px' /></a></td>
+                            <td><b>135</b></td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td><a href='#'>Démo Destru BIS</a> </td>
+                            <td>Fonderie Mythic</td>
+                            <td>Démoniste</td>
+                            <td><a href='#'><img src='/dist/img/avatars/0-3-1.gif' height='50px'/></a></td>
+                            <td><b>100</b></td>
+                        </tr>
+                        <tr>
+                            <td>3.</td>
+                            <td><a href='#'>Démo affli Heroique</a> </td>
+                            <td>Fonderie Hero</td>
+                            <td>Démoniste</td>
+                            <td><a href='#'><img src='/dist/img/avatars/0-11-1.gif' height='50px'/></a></td>
+                            <td><b>75</b></td>
+                        </tr>
+                        <tr>
+                            <td>4.</td>
+                            <td><a href='#'>War Prot post Fonderie</a></td>
+                            <td>Cognefort Heroique</td>
+                            <td>Guerrier</td>
+                            <td><a href='#'><img src='/dist/img/avatars/0-10-8.gif' height='50px'/></a></td>
+                            <td><b>25</b></td>
+                        </tr>
+                        <tr>
+                            <td>5.</td>
+                            <td><a href='#'>Démo affli BIS</a> </td>
+                            <td>Fonderie Mythic</td>
+                            <td>Démoniste</td>
+                            <td><a href='#'><img src='/dist/img/avatars/0-11-8.gif' height='50px'/></a></td>
+                            <td><b>5</b></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -147,35 +110,35 @@ if (!empty($this->err)):
             <div class='box-body'>
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                      <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
                     </ol>
                     <div class="carousel-inner">
-                      <div class="item active">
-                        <a href='https://www.facebook.com/capi.LoL' target='_blank'>
-                        <img src="http://placehold.it/900x500/425F9C/ffffff&amp;text=Facebook" alt="Facebook">
-                        <div class="carousel-caption">
-                          Facebook
+                        <div class="item active">
+                            <a href='https://www.facebook.com/capi.LoL' target='_blank'>
+                                <img src="http://placehold.it/900x500/425F9C/ffffff&amp;text=Facebook" alt="Facebook">
+                                <div class="carousel-caption">
+                                    Facebook
+                                </div>
+                            </a>
                         </div>
-                        </a>
-                      </div>
-                      <div class="item">
-                        <a href='https://twitter.com/murloc_avenue' target='_blank'>
-                        <img src="http://placehold.it/900x500/55ACEE/ffffff&amp;text=Twitter" alt="Twitter">
-                        <div class="carousel-caption">
-                          Twitter
+                        <div class="item">
+                            <a href='https://twitter.com/murloc_avenue' target='_blank'>
+                                <img src="http://placehold.it/900x500/55ACEE/ffffff&amp;text=Twitter" alt="Twitter">
+                                <div class="carousel-caption">
+                                    Twitter
+                                </div>
+                            </a>
                         </div>
-                        </a>
-                      </div>
-                        
+
                     </div>
                     <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                      <span class="fa fa-angle-left"></span>
+                        <span class="fa fa-angle-left"></span>
                     </a>
                     <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                      <span class="fa fa-angle-right"></span>
+                        <span class="fa fa-angle-right"></span>
                     </a>
-                  </div>
+                </div>
             </div>
         </div>
     </div>

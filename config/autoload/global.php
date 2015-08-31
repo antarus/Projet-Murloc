@@ -31,9 +31,9 @@ return array(
                             )
                 ));
 
-//                $cache->setOptions(array(
-//                    'cache_dir' => './data/cache'
-//                ));
+                $cache->setOptions(array(
+                    'cache_dir' => './data/cache'
+                ));
 
                 return $cache;
             },

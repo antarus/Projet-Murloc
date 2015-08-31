@@ -69,8 +69,14 @@ class Guildes {
      * @return array
      */
     public function getByJeux($iIdJeux) {
-        $oRes = $this->tableGateway->select(array('forgetPass' => $iIdJeux));
-        return $oRes->toArray();
+
+        try {
+            $oRowset = $this->tableGateway->select(array('idJeux' => $iIdJeux));
+        } catch (Exception $e) {
+            \Zend\Debug\Debug::dump($e->__toString());
+            exit;
+        }
+        return $oRowset->toArray();
     }
 
     /**
@@ -83,6 +89,35 @@ class Guildes {
             $this->tableGateway->insert($aGuilde);
             return true;
         } catch (\Exception $e) {
+            \Zend\Debug\Debug::dump($e->__toString());
+            exit;
+        }
+    }
+
+    /**
+     * Retrouve la guilde par son identifiant.
+     * @param type $id
+     * @return type
+     */
+    public function getById($id) {
+        try {
+            $rowset = $this->tableGateway->select(array('idGuildes' => $id));
+        } catch (Exception $e) {
+            \Zend\Debug\Debug::dump($e->__toString());
+            exit;
+        }
+        $row = $rowset->current();
+        return (!$row) ? false : $row;
+    }
+
+    /**
+     * Supprime une guilde par son identifiant.
+     * @param type $id
+     */
+    public function delete($id) {
+        try {
+            return $this->tableGateway->delete(array('idGuildes' => $id));
+        } catch (Exception $e) {
             \Zend\Debug\Debug::dump($e->__toString());
             exit;
         }

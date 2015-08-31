@@ -61,9 +61,9 @@ class IndexController extends AbstractActionController {
         $sErrorMessage = $sMessenger->getMessages();
         $sMessenger->setNamespace('info');
         $sInfosMessage = $sMessenger->getMessages();
-
-        return new ViewModel(array('err' => $sErrorMessage,
-            'info' => $sInfosMessage));
+        $this->layout()->setVariable('err', $sErrorMessage);
+        $this->layout()->setVariable('info', $sInfosMessage);
+        return new ViewModel();
     }
 
     public function loginAction() {

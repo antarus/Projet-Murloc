@@ -1,48 +1,10 @@
-<?php
-$this->headScript()
-        ->prependFile($this->basePath('dist/js/pages/dashboard.js'));
-if (!empty($this->err)):
-    ?>
-    <div class="box box-danger box-solid">
-        <div class="box-header with-border">
-            <h5>Une erreur est survenue !</h5>
-            <div class='box-tools pull-right'>
-                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
-        </div>
-        <div class='box-body'>
-            <ul>
-                <?php foreach ($this->err as $r): ?>
-                    <li><?php echo $this->translate($r); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    </div>
-<?php endif; ?>
-<?php if (!empty($this->info)): ?>
-    <div class="box box-success box-solid">
-        <div class="box-header with-border">
-            <h5>Félicitation !</h5>
-            <div class='box-tools pull-right'>
-                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
-        </div>
-        <div class='box-body'>
-            <ul>
-                <?php foreach ($this->info as $r): ?>
-                    <li><?php echo $this->translate($r); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    </div>
-<?php endif; ?>
 <h1><?php echo $this->translate("Liste des guildes") ?></h1>
 
 <table class="table table-bordered table-striped           table-hover">
     <tr>
         <th><?php echo $this->translate("nom") ?></th>
         <th><?php echo $this->translate("serveur") ?></th>
-        <th><?php echo $this->translate("jeux") ?></th>
+        <th><?php echo $this->translate($this->translate("jeux")); ?></th>
         <th>&nbsp;</th>
     </tr>
     <?php foreach ($this->guildes as $guilde) : ?>
@@ -52,7 +14,8 @@ if (!empty($this->err)):
             <td><?php echo $this->escapeHtml($this->translate($guilde['nomJeux'])); ?></td>
             <td>
                 <a class="btn btn-info disabled" href=""><span class="glyphicon glyphicon-pencil "></span>&nbsp;<?php echo $this->translate("Modifier") ?></a>
-                <a class="btn btn-danger disabled" href=""><span class="glyphicon glyphicon-trash "></span>&nbsp;<?php echo $this->translate("Supprimer") ?></a>
+                <a class="btn btn-danger" href="<?php echo $this->url('guildes-del', array('id' => $guilde['guildeId'])); ?>"><span class="glyphicon glyphicon-trash "></span>&nbsp;<?php echo $this->translate("Supprimer") ?></a>
+
             </td>
         </tr>
     <?php endforeach; ?>

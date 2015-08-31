@@ -77,16 +77,52 @@ class JeuxController extends AbstractActionController {
         $sMessenger->setNamespace('info');
         $sInfosMessage = $sMessenger->getMessages();
         $aListeJeux = $this->_getServJeux()->fetchAll();
-        return new ViewModel(array('err' => $sErrorMessage,
-            'info' => $sInfosMessage, 'jeux' => $aListeJeux));
+        $this->layout()->setVariable('err', $sErrorMessage);
+        $this->layout()->setVariable('info', $sInfosMessage);
+        return new ViewModel(array('jeux' => $aListeJeux));
     }
 
     /**
-     * Ajout d'un jeu.
+     * Ajout d'un jeux.
      * @return ViewModel
      */
     public function addAction() {
+        $sMessenger = $this->flashMessenger();
+        $sMessenger->setNamespace('err');
+        $sErrorMessage = $sMessenger->getMessages();
+        $sMessenger->setNamespace('info');
+        $sInfosMessage = $sMessenger->getMessages();
+        $aRequest = $this->getRequest();
 
+        if ($aRequest->isPost()) {
+            $aPost = $aRequest->getPost();
+            if (!isset($aPost['nom']) || empty($aPost['nom'])) {
+                $this->_getLogService()->log(LogService::INFO, $this->_getServTranslator()->translate("Jeux - Nom manquant."), LogService::USER);
+                $sErrorMessage[] = $this->_getServTranslator()->translate("Jeux - Nom manquant");
+                $this->layout()->setVariable('err', $sErrorMessage);
+                return new ViewModel(array('jeux' => $this->_getServJeux()->fetchAll()));
+            }
+            if (!isset($aPost['logo']) || empty($aPost['logo'])) {
+                $this->_getLogService()->log(LogService::INFO, $this->_getServTranslator()->translate("Jeux - Logo manquant."), LogService::USER);
+                $sErrorMessage[] = $this->_getServTranslator()->translate("Jeux - Logo manquant");
+                $this->layout()->setVariable('err', $sErrorMessage);
+                return new ViewModel(array('jeux' => $this->_getServJeux()->fetchAll()));
+            }
+
+            $aJeux = array('nom' => $aPost['nom'],
+                'logo' => $aPost['logo']);
+            if (isset($aPost['idJeux'])) {
+                $aJeux['idJeux'] = $aPost['idJeux'];
+            }
+            $this->_getServJeux()->save($aJeux);
+
+            $sMessenger->addMessage($this->_getServTranslator()->translate("Le jeu a été créé avec succès."), 'info');
+            return $this->redirect()->toRoute('jeux-liste');
+        }
+
+        $this->layout()->setVariable('err', $sErrorMessage);
+        $this->layout()->setVariable('info', $sInfosMessage);
+        return new ViewModel(array('jeux' => $this->_getServJeux()->fetchAll()));
     }
 
     /**
