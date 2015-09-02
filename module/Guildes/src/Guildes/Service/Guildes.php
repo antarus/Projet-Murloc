@@ -8,7 +8,7 @@
  * @date: 22/10/2013
  */
 
-namespace Guildes\Model;
+namespace Guildes\Service;
 
 use Zend\Db\Sql\Predicate\Expression;
 use Zend\Db\Sql\Select;
@@ -18,10 +18,59 @@ class Guildes {
 
     protected $tableGateway;
     private $_config;
+    private $_sm;
+    private $_servTranslator;
+    private $_servFlashMessenger;
 
-    public function __construct(TableGateway $tableGateway, $config) {
+    /**
+     * Retourne le service de message.
+     * @return translator
+     */
+    private function flashMessenger() {
+        if (!$this->_servFlashMessenger) {
+            $this->_servFlashMessenger = $this->_sm->get('controllerpluginmanager')->get('flashmessenger');
+        }
+        return $this->_servFlashMessenger;
+    }
+
+    /**
+     * Retourne le service de traduction.
+     * @return translator
+     */
+    private function _getServTranslator() {
+        if (!$this->_servTranslator) {
+            $this->_servTranslator = $this->_sm->get('translator');
+        }
+        return $this->_servTranslator;
+    }
+
+    public function __construct(TableGateway $tableGateway, $config, $sm) {
         $this->tableGateway = $tableGateway;
         $this->_config = $config;
+        $this->_sm = $sm;
+    }
+
+    /**
+     * Verifie la validité du tableau.
+     * @param array $aGuilde
+     * @return type boolean
+     */
+    public function isValid(array $aGuilde) {
+        $sMessenger = $this->flashMessenger();
+        $bRetour = true;
+        if (!isset($aGuilde['nom']) || empty($aGuilde['nom'])) {
+            $sMessenger->addMessage($this->_getServTranslator()->translate("Guilde - Nom manquant."), 'error');
+            $bRetour = $bRetour && false;
+        }
+        if (!isset($aGuilde['serveur']) || empty($aGuilde['serveur'])) {
+            $sMessenger->addMessage($this->_getServTranslator()->translate("Guilde - Serveur manquant."), 'error');
+            $bRetour = $bRetour && false;
+        }
+        if (!isset($aGuilde['idJeux']) || empty($aGuilde['idJeux'])) {
+            $sMessenger->addMessage($this->_getServTranslator()->translate("Guilde - Jeux manquant."), 'error');
+            $bRetour = $bRetour && false;
+        }
+        return $bRetour;
     }
 
     /**
@@ -87,6 +136,21 @@ class Guildes {
     public function save($aGuilde) {
         try {
             $this->tableGateway->insert($aGuilde);
+            return true;
+        } catch (\Exception $e) {
+            \Zend\Debug\Debug::dump($e->__toString());
+            exit;
+        }
+    }
+
+    /**
+     * Met a jour une guilde.
+     * @param type Array $aGuilde
+     * @return boolean
+     */
+    public function update($aGuilde) {
+        try {
+            $this->tableGateway->update($aGuilde, 'idGuildes = ' . (int) $aGuilde['idGuildes']);
             return true;
         } catch (\Exception $e) {
             \Zend\Debug\Debug::dump($e->__toString());

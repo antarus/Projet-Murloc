@@ -10,5 +10,5 @@
  */
 return array(
     'Guildes\Controller\GuildeController' => __DIR__ . '/src/Guildes/Controller/GuildeController.php',
-    'Guildes\Model\Guildes' => __DIR__ . '/src/Guildes/Model/Guildes.php',
+    'Guildes\Service\Guildes' => __DIR__ . '/src/Guildes/Service/Guildes.php',
 );

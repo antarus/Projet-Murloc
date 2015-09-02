@@ -43,6 +43,20 @@ return array(
                     ),
                 ),
             ),
+            'guildes-edit' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/guildes/modification/[:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]+',
+                        'id' => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Guildes\Controller\Guilde',
+                        'action' => 'edit',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(

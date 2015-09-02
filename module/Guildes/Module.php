@@ -2,7 +2,7 @@
 
 namespace Guildes;
 
-use Guildes\Model\Guildes;
+use Guildes\Service\Guildes;
 use Zend\Db\TableGateway\TableGateway;
 
 class Module {
@@ -24,10 +24,10 @@ class Module {
     public function getServiceConfig() {
         return array(
             'factories' => array(
-                'Guildes\Model\Guildes' => function($sm) {
+                'Guildes\Service\Guildes' => function($sm) {
                     $tableGateway = $sm->get('GuildesGateway');
                     $config = $sm->get('config');
-                    $table = new Guildes($tableGateway, $config);
+                    $table = new Guildes($tableGateway, $config, $sm);
                     return $table;
                 },
                 'GuildesGateway' => function($sm) {

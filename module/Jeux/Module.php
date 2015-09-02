@@ -2,7 +2,7 @@
 
 namespace Jeux;
 
-use Jeux\Model\Jeux;
+use Jeux\Service\Jeux;
 use Zend\Db\TableGateway\TableGateway;
 
 class Module {
@@ -24,7 +24,7 @@ class Module {
     public function getServiceConfig() {
         return array(
             'factories' => array(
-                'Jeux\Model\Jeux' => function($sm) {
+                'Jeux\Service\Jeux' => function($sm) {
                     $tableGateway = $sm->get('JeuxGateway');
                     $config = $sm->get('config');
                     $table = new Jeux($tableGateway, $config);

@@ -1,6 +1,7 @@
 <h1><?php echo $this->translate("Création d'une guilde") ?></h1>
-<form method='post' action="<?php echo $this->url('guildes-add', array('action' => 'add')) ?>" class="form-inline">
+<form method='post' action="<?php echo $this->url('guildes-edit', array('id' => $guilde['idGuildes'])) ?>" class="form-inline">
     <fieldset>
+        <input type="hidden" name="id" required="true" value="<?php echo (int) $guilde['idGuildes']; ?>" />
         <div class="control-group">
             <label class="control-label"><?php echo $this->translate("Nom") ?></label>
             <div class="controls">

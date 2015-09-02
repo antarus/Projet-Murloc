@@ -10,6 +10,7 @@
  */
 return array(
     'Application\Service\LogService' => __DIR__ . '/src/Application/Service/LogService.php',
+    'Application\Helper\Messages' => __DIR__ . '/src/Application/Helper/Messages.php',
     'Application\Controller\IndexController' => __DIR__ . '/src/Application/Controller/IndexController.php',
     'Application\Controller\ContactController' => __DIR__ . '/src/Application/Controller/ContactController.php',
 );

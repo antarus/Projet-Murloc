@@ -63,6 +63,14 @@ return array(
             'Application\Controller\Contact' => 'Application\Controller\ContactController'
         ),
     ),
+    'view_helper_config' => array(
+        'flashmessenger' => array(
+            // style bootstrap pour les message d'information, d'erreur, etc.
+            'message_open_format' => '<div%s><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><ul><li>',
+            'message_close_string' => '</li></ul></div>',
+            'message_separator_string' => '</li><li>'
+        )
+    ),
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions' => true,

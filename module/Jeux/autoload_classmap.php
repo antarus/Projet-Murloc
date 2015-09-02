@@ -10,5 +10,5 @@
  */
 return array(
     'Jeux\Controller\JeuxController' => __DIR__ . '/src/Jeux/Controller/JeuxController.php',
-    'Jeux\Model\Jeux' => __DIR__ . '/src/Jeux/Model/Jeux.php',
+    'Jeux\Service\Jeux' => __DIR__ . '/src/Jeux/Service/Jeux.php',
 );
