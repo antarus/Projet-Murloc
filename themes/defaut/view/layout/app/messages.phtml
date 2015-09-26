@@ -1,0 +1,39 @@
+<?php
+
+use Zend\Mvc\Controller\Plugin\FlashMessenger;
+
+$messenger = $this->flashmessenger(); //->getPluginFlashMessenger();
+
+
+
+foreach (array(
+FlashMessenger::NAMESPACE_ERROR,
+ FlashMessenger::NAMESPACE_SUCCESS,
+ FlashMessenger::NAMESPACE_INFO,
+ FlashMessenger::NAMESPACE_DEFAULT)
+as $sNamespace):
+    $messenger->setNamespace($sNamespace);
+    $aMessages = array_merge($messenger->getCurrentMessages(), $messenger->getMessages());
+    $messenger->clearCurrentMessages();
+    $aClasseCommune = array('alert', 'alert-dismissible');
+
+    switch ($sNamespace) {
+        case FlashMessenger::NAMESPACE_ERROR:
+            $aClasseCommune[2] = 'alert-danger';
+            break;
+        case FlashMessenger::NAMESPACE_DEFAULT:
+            $aClasseCommune[2] = 'alert-warning';
+            break;
+        case FlashMessenger::NAMESPACE_INFO:
+            $aClasseCommune[2] = 'alert-info';
+            break;
+        case FlashMessenger::NAMESPACE_SUCCESS:
+            $aClasseCommune[2] = 'alert-success';
+            break;
+        default:
+            break;
+    }
+    echo $messenger->renderAllMessages($sNamespace, $aMessages, $aClasseCommune, true);
+endforeach
+?>
+

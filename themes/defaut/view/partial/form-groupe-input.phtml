@@ -1,0 +1,12 @@
+<?php
+$oElement = $this->element;
+?>
+
+<div class="form-group">
+    <label><?php echo $oElement->getLabel() ?>&nbsp;
+    </label>
+    <?php echo $this->formElement($oElement); ?>
+    <?php if ($this->formElementErrors($oElement)): ?>
+        <span class="help-inline"><?php echo $this->formElementErrors($oElement) ?></span>
+    <?php endif; ?>
+</div>

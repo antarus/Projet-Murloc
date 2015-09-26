@@ -1,0 +1,15 @@
+<h1><?php echo $this->escapeHtml($title = $this->translate("Suppression de la guilde")); ?></h1>
+
+<p><?php
+    echo $this->translate("Etes vous sur de vouloir supprimer '");
+    echo $this->escapeHtml($guilde['nom']);
+    ?>'?
+</p>
+<?php $url = $this->url('guildes-del', array('id' => $guilde['idGuildes'],)); ?>
+<form action="<?php echo $url; ?>" method="post">
+    <div>
+        <input type="hidden" name="id" value="<?php echo (int) $guilde['idGuildes']; ?>" />
+        <input type="submit" class="btn btn-success" name="del" value="Oui" />
+        <input type="submit" name="del" class="btn btn-danger" value="Non" />
+    </div>
+</form>

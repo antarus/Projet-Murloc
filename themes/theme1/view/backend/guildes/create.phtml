@@ -1,0 +1,41 @@
+<h1><?php echo $this->translate("Création") ?></h1>
+
+
+<?php
+/*
+  echo $this->partial('partial/form-partial', array(
+  'form' => $this->form,
+  'url' => $this->url('backend-guildes-update', array('id' => $this->id)))
+  ); */
+
+$form->setAttribute('action', $this->url('backend-guildes-create', array('curJeu' => $this->curJeu)));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('idGuildes'));
+echo $this->formHidden($form->get('idJeux'));
+?>
+
+<?php echo $this->partial('partial/form-groupe-input', array('element' => $form->get('nom'))); ?>
+
+
+<?php echo $this->jeux($this->curJeu)->personnaliseGuildeCreation(); ?>
+
+<?php
+//echo $this->formRow($form->get('title'));
+//echo $this->formRow($form->get('artist'));
+
+
+echo $this->formSubmit($form->get('submit'));
+?>
+
+<a class = "btn-cancel" href = "<?php echo $this->url('backend-guildes-list'); ?>" >Annuler</a>
+<?php echo $this->form()->closeTag();
+?>
+<script type="text/javascript">
+<?php
+if ($this->form->getInputFilter()) {
+    echo $this->form->getJqueryValidateScript();
+}
+?>
+</script>

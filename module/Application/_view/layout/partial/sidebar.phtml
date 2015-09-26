@@ -1,0 +1,67 @@
+<div class="main-sidebar">
+    <!-- Inner sidebar -->
+    <div class="sidebar">
+        <!-- user panel (Optional) -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <a href="/" class='logo'>
+                    <img src='/dist/img/ma/logo.png' height='100px'/>
+                </a>
+            </div>
+        </div><!-- /.user-panel -->
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu">
+            <?php if ($this->userConnect): ?>
+                <li class="header"><?php echo $this->translate('Mon espace'); ?></li>
+                <!-- Optionally, you can add icons to the links -->
+                <li class="active"><a href="#"><span><?php echo $this->translate('Ma espace perso'); ?></span></a></li>
+                <li class="treeview">
+                    <a href="#"><span>Mes listes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a href="#">Guerrier</a></li>
+                        <li><a href="#">Chasseur</a></li>
+                        <li><a href="#">Chaman</a></li>
+                        <li><a href="#">Prêtre</a></li>
+                        <li><a href="#">Démoniste</a></li>
+                        <li><a href="#">Druide</a></li>
+                        <li><a href="#">Moine</a></li>
+                        <li><a href="#">Mage</a></li>
+                        <li><a href="#">Chevalier de la mort</a></li>
+                        <li><a href="#">Voleur</a></li>
+                        <li><a href="#">Paladin</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><span><?php echo $this->translate('Mes guildes'); ?></span></a></li>
+            <?php endif; ?>
+            <li class="header"><?php echo $this->translate('Communautée'); ?></li>
+            <li class="active"><a href="/"><span><?php echo $this->translate('Accueil'); ?></span></a></li>
+            <li class="treeview">
+                <a href="#"><span><?php echo $this->translate('Listes de Loots publique'); ?></span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Guerrier</a></li>
+                    <li><a href="#">Chasseur</a></li>
+                    <li><a href="#">Chaman</a></li>
+                    <li><a href="#">Prêtre</a></li>
+                    <li><a href="#">Démoniste</a></li>
+                    <li><a href="#">Druide</a></li>
+                    <li><a href="#">Moine</a></li>
+                    <li><a href="#">Mage</a></li>
+                    <li><a href="#">Chevalier de la mort</a></li>
+                    <li><a href="#">Voleur</a></li>
+                    <li><a href="#">Paladin</a></li>
+                </ul>
+            </li>
+            <a href="#"><span><?php echo $this->translate('Evenements publique'); ?></span> <i class="fa fa-angle-left pull-right"></i></a>
+            <li><a href="<?php echo $this->url('contact'); ?>"><span>Contact</span></a></li>
+            <li><a href="<?php echo $this->url('guildes-liste'); ?>"><span>Guilde</span></a></li>
+            <li><a href="<?php echo $this->url('bak-plugins-list'); ?>"><span>backend</span></a></li>
+
+
+
+        </ul><!-- /.sidebar-menu -->
+        <br />
+        <a href='http://eu.blizzard.com/fr-fr/'>
+            <img src='/dist/img/ma/Blizzard_800.jpg' width='50px;'/>
+        </a>
+    </div><!-- /.sidebar -->
+</div><!-- /.main-sidebar -->

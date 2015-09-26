@@ -1,0 +1,50 @@
+<?php
+$oForm = $this->form;
+$oForm->setAttribute('action', $this->url);
+$oForm->prepare();
+echo $this->form()->openTag($oForm);
+?>
+
+<?php foreach ($oForm as $oElement) : ?>
+
+    <?php if ($oElement->getAttribute('type') == 'checkbox'): ?>
+        <div class="checkbox">
+            <label>
+                <?php echo $this->formElement($oElement); ?>
+            </label>
+        </div>
+
+    <?php elseif ($oElement->getAttribute('type') == 'hidden'): ?>
+        <div><?php echo $this->formElement($oElement); ?></div>
+
+    <?php elseif ($oElement->getAttribute('type') == 'submit'): ?>
+        <div class="form-group">
+            <?php echo $this->formElement($oElement); ?>
+        </div>
+
+    <?php else: ?>
+        <div class="form-group">
+            <label><?php echo $oElement->getLabel() ?>&nbsp;
+            </label>
+            <?php echo $this->formElement($oElement); ?>
+            <?php if ($this->formElementErrors($oElement)): ?>
+                <span class="help-inline"><?php echo $this->formElementErrors($oElement) ?></span>
+            <?php endif; ?>
+        </div>
+
+    <?php endif; ?>
+
+<?php endforeach; ?>
+
+<?php echo $this->form()->closeTag($oForm); ?>
+
+
+
+
+<script type="text/javascript">
+<?php
+if ($this->form->getInputFilter()) {
+    echo $this->form->getJqueryValidateScript();
+}
+?>
+</script>

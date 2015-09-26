@@ -1,0 +1,8 @@
+<h1>Mise à jour</h1>
+
+<?php
+echo $this->partial('partial/form-partial', array(
+    'form' => $this->form,
+    'url' => $this->url('backend-roster-update', array('id' => $this->id)))
+);
+?>

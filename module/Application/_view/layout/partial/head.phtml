@@ -1,0 +1,35 @@
+<meta charset="utf-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php echo $this->headTitle('Murloc Avenue : DEV') ?>
+<?php
+echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+?>
+<!-- Le styles -->
+<?php
+echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/dist/img/ma/favicon.ico'))
+        ->prependStylesheet($this->basePath('/dist/css/AdminLTE.min.css'))
+        ->prependStylesheet($this->basePath('/bootstrap/css/bootstrap.min.css'))
+        ->prependStylesheet($this->basePath('/dist/css/zf-table.css'))
+?>
+<!-- Scripts -->
+<?php
+echo $this->headScript()
+        ->prependFile($this->basePath('/dist/js/zf-table.js'))
+        ->prependFile($this->basePath('/dist/js/modeler.js'))
+        ->prependFile($this->basePath('/dist/js/jquery.validate.min.js'))
+        ->prependFile($this->basePath('/dist/js/app.js'))
+        ->prependFile($this->basePath('/bootstrap/js/bootstrap.min.js'))
+        ->prependFile($this->basePath('/plugins/jQuery/jQuery-2.1.4.min.js'))
+
+
+;
+?>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<!-- HTML5 shim, pour le support IE6-8 support des éléments HTML5  -->
+<!--[if lt IE 9]>
+    <script src="<?= $this->basePath('/assets/js/html5shiv.js') ?>"></script>
+<![endif]-->

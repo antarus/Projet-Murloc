@@ -1,0 +1,33 @@
+<?php
+$page = $this->page;
+$level = empty($this->level) ? 0 : $this->level;
+$hasChildren = false;
+foreach ($page->getPages() as $child) {
+    if ($this->navigation()->accept($child)) {
+        $hasChildren = true;
+        break;
+    }
+}
+if (!$hasChildren):
+    ?>
+    <li><a href="<?= $page->getHref() ?>"><?= $page->getLabel() ?></a></li>
+    <?php
+else:
+    $liClass = ($level > 0) ? 'dropdown-submenu' : 'dropdown';
+    ?>
+    <li class="<?= $liClass ?>">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <?= $page->getLabel() ?>
+            <?php if ($level === 0): ?><b class="caret"></b><?php endif ?>
+        </a>
+        <ul class="dropdown-menu">
+            <?php
+            foreach ($page->getPages() as $child):
+                if (!$this->navigation()->accept($child))
+                    continue;
+                ?>
+                <?= $this->partial('partial/commun/menu-item', array('page' => $child, 'level' => $level + 1)) ?>
+            <?php endforeach ?>
+        </ul>
+    </li>
+<?php endif ?>

@@ -1,0 +1,21 @@
+
+
+<ul class="breadcrumb">
+    <li>
+        <a href="<?= $this->basePath() ?>">The app</a>
+        <?php if (count($this->pages)): ?><span class="divider">/</span><?php endif ?>
+    </li>
+    <?php foreach ($this->pages as $key => $page):// iterate through the pages
+        if ($key < count($this->pages) - 1): // if this isn't the last page, add a link and the separator
+            ?>
+            <li>
+                <a href="<?= $page->getHref(); ?>"><?= $page->getLabel(); ?></a>
+                <span class="divider">/</span>
+            </li>
+            <?php else: // otherwise, just output the name ?>
+            <li class="active">
+            <?= $page->getLabel(); ?>
+            </li>
+        <?php endif; ?>
+<?php endforeach; ?>
+</ul>

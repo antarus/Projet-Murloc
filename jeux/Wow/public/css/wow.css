@@ -1,0 +1,27 @@
+#wow-iframe-traitement {
+    position: absolute;
+}
+
+#wow-zend-progressbar-container {
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    display:none;
+}
+
+#wow-zend-progressbar-done {
+    width: 0;
+    height: 30px;
+
+    background-color: #000000;
+}
+#wow-import-container{
+    top:50px;
+    position:absolute;
+    overflow-y: auto;
+    height: 300px;
+    width:400px;
+    display:none;
+}

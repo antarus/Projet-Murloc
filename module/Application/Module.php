@@ -13,6 +13,7 @@ namespace Application;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
+use Zend\Session\SessionManager;
 
 class Module {
 
@@ -21,11 +22,19 @@ class Module {
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
 
+        // TODO test them en session utilisateur
+        $sessionManager = new SessionManager();
+        $sessionManager->start();
+        $sessionManager->getStorage()->Theme = null; //'blue'; //null;//default
+
         $oSessionUser = new Container('users');
+        $oSessionUser['Theme'] = 'blue';
+
         if (!empty($oSessionUser['users'])) {
             $e->getViewModel()->setVariable('userConnect', true);
             $e->getViewModel()->setVariable('nom', $oSessionUser['users'][0]['pseudo']);
             $e->getViewModel()->setVariable('avatar', $oSessionUser['users'][0]['avatar']);
+            $e->getViewModel()->setVariable('theme', $oSessionUser['users'][0]['Theme']);
         }
     }
 
@@ -53,6 +62,36 @@ class Module {
                 'ModuleManagerService' => 'Application\Service\ModuleManagerService',
                 'LogService' => 'Application\Service\LogService',
             ),
+        );
+    }
+
+    public function getViewHelperConfig() {
+        return array(
+            'factories' => array(
+                //surcharge du flashmessenger par le notre pour utiliser une methode plus propre pour rendre les messages de la requete courant et la suivante.
+                'flashmessenger' => function($sm) {
+                    $helper = new \Core\Helper\Messages();
+                    $serviceLocator = $sm->getServiceLocator();
+                    $controllerPluginManager = $serviceLocator->get('ControllerPluginManager');
+                    $flashMessenger = $controllerPluginManager->get('flashmessenger');
+                    $helper->setPluginFlashMessenger($flashMessenger);
+                    $config = $serviceLocator->get('Config');
+                    if (isset($config['view_helper_config']['flashmessenger'])) {
+                        $configHelper = $config['view_helper_config']['flashmessenger'];
+                        if (isset($configHelper['message_open_format'])) {
+                            $helper->setMessageOpenFormat($configHelper['message_open_format']);
+                        }
+                        if (isset($configHelper['message_separator_string'])) {
+                            $helper->setMessageSeparatorString($configHelper['message_separator_string']);
+                        }
+                        if (isset($configHelper['message_close_string'])) {
+                            $helper->setMessageCloseString($configHelper['message_close_string']);
+                        }
+                    }
+
+                    return $helper;
+                }
+            )
         );
     }
 

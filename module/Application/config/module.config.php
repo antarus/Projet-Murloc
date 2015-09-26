@@ -48,7 +48,7 @@ return array(
         ),
     ),
     'translator' => array(
-        'locale' => 'en_US',
+        'locale' => 'fr_FR',
         'translation_file_patterns' => array(
             array(
                 'type' => 'gettext',
@@ -63,22 +63,6 @@ return array(
             'Application\Controller\Contact' => 'Application\Controller\ContactController'
         ),
     ),
-    'view_manager' => array(
-        'display_not_found_reason' => true,
-        'display_exceptions' => true,
-        'doctype' => 'HTML5',
-        'not_found_template' => 'error/404',
-        'exception_template' => 'error/index',
-        'template_map' => array(
-            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
-            'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
-            'error/404' => __DIR__ . '/../view/error/404.phtml',
-            'error/index' => __DIR__ . '/../view/error/index.phtml',
-        ),
-        'template_path_stack' => array(
-            __DIR__ . '/../view',
-        ),
-    ),
     // Placeholder for console routes
     'console' => array(
         'router' => array(
@@ -86,4 +70,56 @@ return array(
             ),
         ),
     ),
+//    'assetic_configuration' => array(
+//        // Use on production environment
+//        // 'debug'              => false,
+//        // 'buildOnRequest'     => false,
+//        // Use on development environment
+//        'debug' => true,
+//        'buildOnRequest' => true,
+//        // This is optional flag, by default set to `true`.
+//        // In debug mode allow you to combine all assets to one file.
+//        // 'combine' => false,
+//        // this is specific to this project
+//        'webPath' => realpath('public/assets'),
+//        'basePath' => 'assets',
+//        'controllers' => array(
+//            'Application\Controller\Index' => array(
+//                '@css',
+//            // '@my_js',
+//            ),
+//        ),
+//        'modules' => array(
+//            'application' => array(
+//                'root_path' => __DIR__ . '/../public/assets',
+//                'collections' => array(
+//                    'css' => array(
+//                        'assets' => array(
+//                            'css/test.css',
+//                        // 'css/main2.css',
+//                        ),
+////                        'filters' => array(
+////                            '?CssRewriteFilter' => array(
+////                                'name' => 'Assetic\Filter\CssRewriteFilter'
+////                            ),
+////                            '?CssMinFilter' => array(
+////                                'name' => 'Assetic\Filter\CssMinFilter'
+////                            ),
+////                        ),
+//                    ),
+////                    'my_js' => array(
+////                        'assets' => array(
+////                        // 'js/main1.js',
+////                        // 'js/main2.js',
+////                        ),
+////                        'filters' => array(
+////                            '?JSMinFilter' => array(
+////                                'name' => 'Assetic\Filter\JSMinFilter'
+////                            ),
+////                        ),
+////                    ),
+//                ),
+//            ),
+//        ),
+//    ),
 );

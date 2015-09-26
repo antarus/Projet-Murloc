@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -15,8 +16,8 @@ use Zend\Json\Json;
  * Zend\ProgressBar\Adapter\JsPush offers a simple method for updating a
  * progressbar in a browser.
  */
-class JsPush extends AbstractAdapter
-{
+class JsPush extends AbstractAdapter {
+
     /**
      * Name of the JavaScript method to call on update
      *
@@ -37,8 +38,7 @@ class JsPush extends AbstractAdapter
      * @param  string $methodName
      * @return \Zend\ProgressBar\Adapter\JsPush
      */
-    public function setUpdateMethodName($methodName)
-    {
+    public function setUpdateMethodName($methodName) {
         $this->updateMethodName = $methodName;
 
         return $this;
@@ -50,8 +50,7 @@ class JsPush extends AbstractAdapter
      * @param  string $methodName
      * @return \Zend\ProgressBar\Adapter\JsPush
      */
-    public function setFinishMethodName($methodName)
-    {
+    public function setFinishMethodName($methodName) {
         $this->finishMethodName = $methodName;
 
         return $this;
@@ -68,20 +67,19 @@ class JsPush extends AbstractAdapter
      * @param  string  $text          Status text
      * @return void
      */
-    public function notify($current, $max, $percent, $timeTaken, $timeRemaining, $text)
-    {
+    public function notify($current, $max, $percent, $timeTaken, $timeRemaining, $text) {
         $arguments = array(
-            'current'       => $current,
-            'max'           => $max,
-            'percent'       => ($percent * 100),
-            'timeTaken'     => $timeTaken,
+            'current' => $current,
+            'max' => $max,
+            'percent' => ($percent * 100),
+            'timeTaken' => $timeTaken,
             'timeRemaining' => $timeRemaining,
-            'text'          => $text
+            'text' => $text
         );
 
         $data = '<script type="text/javascript">'
-              . 'parent.' . $this->updateMethodName . '(' . Json::encode($arguments) . ');'
-              . '</script>';
+                . 'parent.' . $this->updateMethodName . '(' . Json::encode($arguments) . ');'
+                . '</script>';
 
         // Output the data
         $this->_outputData($data);
@@ -92,15 +90,14 @@ class JsPush extends AbstractAdapter
      *
      * @return void
      */
-    public function finish()
-    {
+    public function finish() {
         if ($this->finishMethodName === null) {
             return;
         }
 
         $data = '<script type="text/javascript">'
-              . 'parent.' . $this->finishMethodName . '();'
-              . '</script>';
+                . 'parent.' . $this->finishMethodName . '();'
+                . '</script>';
 
         $this->_outputData($data);
     }
@@ -113,8 +110,7 @@ class JsPush extends AbstractAdapter
      * @param  string $data
      * @return void
      */
-    protected function _outputData($data)
-    {
+    protected function _outputData($data) {
         // 1024 padding is required for Safari, while 256 padding is required
         // for Internet Explorer. The <br /> is required so Safari actually
         // executes the <script />
@@ -123,4 +119,5 @@ class JsPush extends AbstractAdapter
         flush();
         ob_flush();
     }
+
 }

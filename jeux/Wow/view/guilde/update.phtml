@@ -1,0 +1,21 @@
+<a id="lnkImport" title="Importer une guilde" href="<?php echo $this->url('wow-import-guilde', array('id' => $this->id)); ?>" >Importer la guilde via l'armurerie</a><br />
+<div id="msgWowImport"></div>
+<script>
+    $(document).ready(function () {
+
+        $('#lnkImport').click(function () {
+            var $link = $(this);
+            var $dialog = $('<div id="dlgImport"></div>')
+                    .load($link.attr('href'))
+                    .dialog({
+                        autoOpen: false,
+                        title: $link.attr('title'),
+                        height: 450,
+                        width: 500
+                    });
+            $dialog.dialog('open');
+
+            return false;
+        });
+    });
+</script>

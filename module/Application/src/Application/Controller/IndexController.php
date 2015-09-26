@@ -54,16 +54,20 @@ class IndexController extends AbstractActionController {
         return $this->_servUsers;
     }
 
-    public function indexAction() {
+    protected function _getHelper($helper, $serviceLocator) {
+        return $this->getServiceLocator()
+                        ->get('viewhelpermanager')
+                        ->get($helper);
+    }
 
-        $sMessenger = $this->flashMessenger();
-        $sMessenger->setNamespace('err');
-        $sErrorMessage = $sMessenger->getMessages();
-        $sMessenger->setNamespace('info');
-        $sInfosMessage = $sMessenger->getMessages();
-        $this->layout()->setVariable('err', $sErrorMessage);
-        $this->layout()->setVariable('info', $sInfosMessage);
-        return new ViewModel();
+    public function indexAction() {
+        // Pour optimiser le rendu
+        $oViewModel = new ViewModel();
+        $oViewModel->setTemplate('application/index/index');
+        //  return $oViewModel->setVariables(array('form' => $oForm));
+        $param = array($oViewModel);
+        $this->getEventManager()->trigger('pre.render', $this, $param);
+        return $oViewModel;
     }
 
     public function loginAction() {

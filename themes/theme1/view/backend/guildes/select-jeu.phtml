@@ -1,0 +1,41 @@
+<h1><?php echo $this->translate("Selectionnez un jeu") ?></h1>
+<form method='post' action="" class="form-inline">
+    <fieldset>
+        <label class="control-label"><?php echo $this->translate("Jeux") ?></label>
+        <div class="controls">
+            <select name="jeux" >
+                <?php foreach ($this->jeux as $j): ?>
+                    <option value="<?php echo $j['idJeux']; ?>"><?php echo $this->translate($j['nom']); ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="form-actions">
+            <input type='submit' value='submit' class="btn"/>
+        </div>
+    </fieldset>
+</form>
+<script>
+    /*
+     $(document).ready(function () {
+
+     $("select[name*='jeux']").change(function () {
+     if ($('select[name*=\'jeux\']').val() != 0) {
+     $.ajax({
+     type: 'POST',
+     url: '<?php /* echo $this->url('backend-guildes-select-jeu', array('act' => $this->act)); */ ?>',
+     data: {value: $('select[name*=\'jeux\']').val()},
+     dataType: 'json',
+     success: function (data) {
+     alert(data);
+     },
+     error: function (jqXHR, textStatus, errorThrown) {
+     var error = $.parseJSON(jqXHR.responseText);
+     var content = error.content;
+     console.log(content.message);
+     if (content.display_exceptions)
+     console.log(content.exception.xdebug_message);
+     },
+     });
+     }
+     })
+     });*/</script>

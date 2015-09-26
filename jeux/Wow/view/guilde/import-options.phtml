@@ -1,0 +1,36 @@
+<h1><?php echo $this->translate("Importer une guilde") ?></h1>
+<form id="frm1" method='post' action="<?php echo $this->url('wow-import-guilde-traitement', array('id' => $this->id)) ?>" class="form-inline">
+    <fieldset>
+        <input type="hidden" name="id" required="true" value="" />
+        <div class="control-group">
+            <label class="control-label"><?php echo $this->translate("Nom") ?></label>
+            <div class="controls">
+                <input type='text' name="nomGuilde" required="true" value="<?php echo $guilde['nom']; ?>"/>
+            </div>
+            <label class="control-label"><?php echo $this->translate("Serveur") ?></label>
+            <div class="controls">
+                <input type='text' name="nomServeur" required="true" value="<?php echo $guilde['serveur']; ?>"/>
+            </div>
+            <label class="control-label"><?php echo $this->translate("Importer les membres") ?></label>
+            <div class="controls">
+                <input type="radio" name="imp-membre" value="Oui" <?php if ($guilde["imp-membre"] == 'Oui') echo 'checked'; ?>><?php echo $this->translate("Oui") ?>
+                <input type="radio" name="imp-membre" value="Non" <?php if ($guilde["imp-membre"] == 'Non') echo 'checked'; ?>><?php echo $this->translate("Non") ?>
+            </div>
+            <label class="control-label"><?php echo $this->translate("Niveau minimum des membre a importer") ?></label>
+            <div class="controls">
+                <input type='text' name="lvlMin"  value="<?php echo $guilde['lvlMin']; ?>"/>
+            </div>
+            <p class="help-block"><?php echo $this->translate("Laisser vide pour importer tous les membres") ?></p>
+            <div class="form-actions">
+                <input id="submit" type='submit' value='submit' class="btn"/>
+            </div>
+            <div class="import">
+
+            </div>
+    </fieldset>
+</form>
+<?php if (isset($guilde["bnetData"])) : ?>
+    <script>
+        parent.document.getElementsByName("data")[0].value = JSON.stringify(<?php echo $guilde["bnetData"]; ?>);
+    </script>
+<?php endif; ?>

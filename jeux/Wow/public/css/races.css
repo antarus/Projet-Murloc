@@ -1,0 +1,27 @@
+.spriteRace { background-image: url('./../img/race.png'); background-color: transparent; background-repeat: no-repeat; }
+.Gnome { width: 18px; height: 18px; background-position: 0px -450px; }
+.Elfe-de-sang { width: 18px; height: 18px; background-position: 0px -432px; }
+.Elfe-de-sangf { width: 18px; height: 18px; background-position: 0px -414px; }
+.Worgen { width: 18px; height: 18px; background-position: 0px -396px; }
+.Worgenf { width: 18px; height: 18px; background-position: 0px -378px; }
+.Goblin { width: 18px; height: 18px; background-position: 0px -360px; }
+.Goblinf { width: 18px; height: 18px; background-position: 0px -342px; }
+.Pandaren { width: 18px; height: 18px; background-position: 0px -324px; }
+.Pandarenf { width: 18px; height: 18px; background-position: 0px -306px; }
+.Gnomef { width: 18px; height: 18px; background-position: 0px -288px; }
+.Humain { width: 18px; height: 18px; background-position: 0px -270px; }
+.Humainf { width: 18px; height: 18px; background-position: 0px -252px; }
+.Nain { width: 18px; height: 18px; background-position: 0px -234px; }
+.Nainf { width: 18px; height: 18px; background-position: 0px -216px; }
+.Elfe-de-la-nuit { width: 18px; height: 18px; background-position: 0px -198px; }
+.Elfe-de-la-nuitf { width: 18px; height: 18px; background-position: 0px -180px; }
+.Troll { width: 18px; height: 18px; background-position: 0px -162px; }
+.Trollf { width: 18px; height: 18px; background-position: 0px -144px; }
+.Mort-vivant { width: 18px; height: 18px; background-position: 0px -126px; }
+.Mort-vivantf { width: 18px; height: 18px; background-position: 0px -108px; }
+.Orque { width: 18px; height: 18px; background-position: 0px -90px; }
+.Orquef { width: 18px; height: 18px; background-position: 0px -72px; }
+.Tauren { width: 18px; height: 18px; background-position: 0px -54px; }
+.Taurenf { width: 18px; height: 18px; background-position: 0px -36px; }
+.Draenei { width: 18px; height: 18px; background-position: 0px -18px; }
+.Draeneif { width: 18px; height: 18px; background-position: 0px 0px; }

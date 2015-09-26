@@ -1,0 +1,8 @@
+<h1><?php echo $this->translate("Création") ?></h1>
+
+<?php
+echo $this->partial('partial/form-partial', array(
+    'form' => $this->form,
+    'url' => $this->url('backend-jeux-create'))
+);
+?>

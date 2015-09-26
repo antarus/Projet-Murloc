@@ -2,4 +2,5 @@ local.php
 *.local.php
 HELP/
 nbproject/
-log/murloc.log
+/data/cache/config/module-config-cache.2245023265ae4cf87d02c8b6ba991139.php
+/data/cache/config/module-classmap-cache.496fe9daf9baed5ab03314f04518b928.php

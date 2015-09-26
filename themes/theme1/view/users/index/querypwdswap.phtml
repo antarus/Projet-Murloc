@@ -1,0 +1,39 @@
+
+<h1><?php echo $this->translate("Récupération du mot de passe de Murloc-avenue !"); ?></h1>
+<br />
+<br />
+<div class='row'>
+    <div class='col-md-8'>
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?php echo $this->translate("Bonjour"); ?> <?php if (isset($this->pseudo)) echo $this->pseudo; ?></h3>
+            </div>
+            <div class="box-body">
+                <?php if (isset($this->pseudo) && empty($this->info)): ?>
+                    <form role="form" action='<?php echo $this->url('users-changepassword'); ?>' method='post'>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="passOne" class="col-sm-4 control-label">Nouveau mot de passe :</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control"  name='pwd' id="passOne" placeholder="<?php echo $this->translate('Mot de passe'); ?>" required>
+                                </div>
+                            </div><div class="form-group">
+                                <label for="passTwo" class="col-sm-4 control-label"><?php echo $this->translate("Confirmation du mot de passe:"); ?></label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control"  name='pwdConfirm' id="passTwo" placeholder="<?php echo $this->translate('Mot de passe'); ?>" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <input type="hidden" name="forgetkey" value="<?php echo $this->forgetkey; ?>" />
+                            <button type="submit" class="btn btn-primary"><?php echo $this->translate("Soumettre"); ?></button>
+                        </div>
+                    </form>
+                <?php endif; ?>
+                <?php if (empty($this->err) && !empty($this->info)): ?>
+                    <p><?php echo $this->translate("Vous pouvez maintenant vous connectez !"); ?> </p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

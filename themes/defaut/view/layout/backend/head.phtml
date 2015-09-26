@@ -1,0 +1,32 @@
+<meta charset="utf-8">
+<?php echo $this->headTitle($this->translate('Murloc - Administration'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+<?php
+echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+?>
+
+<!-- Le styles -->
+<?php
+echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+        ->prependStylesheet($this->basePath('/defaut/css/Backend/style.css'))
+        //->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+        ->prependStylesheet($this->basePath('/defaut/css/Backend/test-bootstrap-theme.css'))
+        ->prependStylesheet($this->basePath('/defaut/css/Backend/bootstrap.css'))
+        ->prependStylesheet($this->basePath('/defaut/css/Backend/jquery-ui.css'))
+?>
+
+<!-- Scripts -->
+<?php
+echo $this->headScript()
+        ->prependFile($this->basePath('/defaut/js/Application/messages_fr.min.js'))
+        ->prependFile($this->basePath('/defaut/js/Application/jquery.validate.min.js'))
+        ->prependFile($this->basePath('/defaut/js/Application/zf-table.js'))
+        ->prependFile($this->basePath('/defaut/js/Application/bootstrap.min.js'))
+        ->prependFile($this->basePath('/defaut/js/Application/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
+        ->prependFile($this->basePath('/defaut/js/Application/html5shiv.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
+        ->prependFile($this->basePath('/defaut/js/Application/jquery-ui.min.js'))
+        ->prependFile($this->basePath('/defaut/js/Application/jQuery-2.1.4.min.js'));
+;
+?>

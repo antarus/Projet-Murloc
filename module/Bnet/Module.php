@@ -2,8 +2,6 @@
 
 namespace Bnet;
 
-//use Api\Model\Battlenet;
-
 class Module {
 
     public function getConfig() {
@@ -12,10 +10,8 @@ class Module {
 
     public function getAutoloaderConfig() {
         return array(
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ),
+            'Zend\Loader\ClassMapAutoloader' => array(
+                __DIR__ . '/autoload_classmap.php',
             ),
         );
     }

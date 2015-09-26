@@ -1,0 +1,8 @@
+<a href="<?php echo $this->url('backend-personnages-create'); ?>" class="btn btn-success"><?php echo $this->translate("Créer") ?></a>
+
+<div id="tableContainer">
+</div>
+
+<script>
+    $("#tableContainer").zfTable('<?php echo $this->url('backend-personnages-ajaxList'); ?>');
+</script>
