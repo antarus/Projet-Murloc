@@ -76,7 +76,7 @@ class Module {
     public function getAutoloaderConfig() {
         $autoload = array();
         foreach ($this->getConfigJeux()['jeux_disponible'] as $name => $active) {
-            if ($active['Actif']) {
+            if ($active) {
                 $autoload[] = __DIR__ . '\..\..\jeux\\' . $name . '\\' . 'autoload_classmap.php';
             }
         }

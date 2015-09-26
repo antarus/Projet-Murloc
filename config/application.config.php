@@ -30,6 +30,7 @@ if ($env == 'development') {
         'Jeux',
         'Backend',
         'Bnet',
+        //  'Guildes',
         'Users'
     );
 }

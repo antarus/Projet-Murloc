@@ -1,0 +1,39 @@
+<?php
+echo $this->plugin('doctype')->setDoctype(\Zend\View\Helper\Doctype::HTML5);
+?>
+
+<html lang="en">
+    <head>
+        <?= $this->render('layout/partial/head') ?>
+    </head>
+    <body class="skin-blue-light sidebar-mini">
+        <div class='wrapper'>
+            <?= $this->render('layout/partial/header') ?>
+            <?= $this->render('layout/partial/sidebar') ?>
+
+            <div class="container" style='min-height:900px !important;'>
+                <?= $this->render('layout/partial/messages') ?>
+                <?php
+                /* $flash = $this->flashMessenger();
+                  echo $flash->render('error', array('alert', 'alert-dismissible', 'alert-danger'));
+                  echo $flash->render('info', array('alert', 'alert-dismissible', 'alert-info'));
+                  echo $flash->render('default', array('alert', 'alert-dismissible', 'alert-warning'));
+                  echo $flash->render('success', array('alert', 'alert-dismissible', 'alert-success'));
+                  echo $flash->renderCurrent('error', array('alert', 'alert-dismissible', 'alert-danger'));
+                  echo $flash->renderCurrent('info', array('alert', 'alert-dismissible', 'alert-info'));
+                  echo $flash->renderCurrent('default', array('alert', 'alert-dismissible', 'alert-warning'));
+                  echo $flash->renderCurrent('success', array('alert', 'alert-dismissible', 'alert-success')); */
+                ?>
+
+                <?php echo $this->content; ?>
+
+                <hr>
+                <footer>
+                    <p>&copy; 2015 - <?php echo date('Y') ?> <?php echo $this->translate('Murloc Avenue - Alpha v1.0 - Réalisation: Capi. Logo: Eva pernot') ?></p>
+                    <p> World of Warcraft et Blizzard Entertainment sont des marques déposées de Blizzard Entertainment, Inc. aux États-Unis d’Amérique et/ou dans d’autres pays.</p>
+                </footer>
+            </div> <!-- /container -->
+        </div>
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>

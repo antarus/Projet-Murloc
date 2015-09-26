@@ -1,0 +1,63 @@
+<header class="main-header">
+    <a class="logo"> </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <?php if (!$this->userConnect): ?>
+                    <li class="dropdown messages-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <?php echo $this->translate('Se connecter'); ?>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <form action='<?php echo $this->url('home', array('action' => 'login')); ?>' method='post'>
+                                    <div class="form-group">
+                                        <input type="text" name='login' class="form-control"  value='' placeholder="Login">
+                                        <input type="password" name='pwd' class="form-control" value='' placeholder="Mot de passe">
+                                        <input type="submit" class="form-control" value='connexion'>
+                                    </div>
+                                </form>
+                            </li>
+                            <li class="footer"><a href="<?php echo $this->url('users-forgekey'); ?>"><?php echo $this->translate('Mot de passe oublié'); ?></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown messages-menu">
+                        <a href="#" ><?php echo $this->translate('Créer un compte'); ?></a>
+                    </li>
+                <?php else: ?>
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <?php if (empty($this->avatar)): ?>
+                                <img src="/dist/img/avatar-null.png" class="user-image" alt="User Image"/>
+                            <?php else: ?>
+                                <img src="http://eu.battle.net/static-render/<?php echo $this->avatar; ?>" class="user-image" alt="User Image"/>
+                            <?php endif ?>
+                            <span class="hidden-xs"><?php echo $this->nom; ?></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="user-header">
+                                <?php if (empty($this->avatar)): ?>
+                                    <img src="/dist/img/avatar-null.png" class="img-circle" alt="User Image"/>
+                                <?php else: ?>
+                                    <img src="http://eu.battle.net/static-render/<?php echo $this->avatar; ?>" class="img-circle" alt="User Image"/>
+                                <?php endif ?>
+                                <p><?php echo $this->nom; ?></p>
+                            </li>
+
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat"><?php echo $this->translate('Mon compte'); ?></a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="<?php echo $this->url('home', array('action' => 'logout')); ?>" class="btn btn-default btn-flat"><?php echo $this->translate('Déconnection'); ?></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </nav>
+</header>
