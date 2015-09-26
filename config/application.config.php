@@ -46,7 +46,7 @@ return array(
             'config/autoload/{{,*.}global,{,*.}local}.php',
         ),
         // Active ou non la configuration du cache pour la configuration.
-        //Si activé,la fusion des fichiers de configurations sera caché et réutilisé dans les requêtes.
+//Si activé,la fusion des fichiers de configurations sera caché et réutilisé dans les requêtes.
         'config_cache_enabled' => false, //($env == 'production'),
         // La clé a utiliser pour le cache.
         'config_cache_key' => "2245023265ae4cf87d02c8b6ba991139",
